@@ -1,0 +1,42 @@
+﻿@using SoftgenTask11.ViewModels;
+@model StudentCreateViewModel
+@{
+    ViewData["Title"] = "Add Student";
+}
+
+<form enctype="multipart/form-data" asp-controller="Student" asp-action="AddStudent" method="post">
+    <div class="row">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" />
+        @*<span asp-validation-for="Name" class="text-danger"></span>*@
+    </div>
+    <div class="row">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" />
+        @*        <span asp-validation-for="Email" class="text-danger"></span>
+        *@
+    </div>
+    <div class="row">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+        @*        <span asp-validation-for="Email" class="text-danger"></span>
+        *@
+    </div>
+    <div class="row">
+        <label asp-for="PersonalNumber"></label>
+        <input asp-for="PersonalNumber" />
+        @*        <span asp-validation-for="Email" class="text-danger"></span>
+        *@
+    </div>
+    <div class="row">
+        <label asp-for="DateOfBirth"></label>
+        <input asp-for="DateOfBirth" />
+        @*        <span asp-validation-for="Email" class="text-danger"></span>
+        *@
+    </div>
+        <div class="m-3">
+
+            <button type="submit">Create</button>
+        </div>
+
+</form>

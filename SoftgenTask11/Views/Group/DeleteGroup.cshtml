@@ -1,0 +1,15 @@
+﻿@model Group
+@{
+    ViewData["Title"] = "Confirm Delete";
+}
+
+<div>
+    <form enctype="multipart/form-data" asp-controller="Group" asp-action="DeleteGroup"  method="post">
+
+        <h5>Deleting: </h5>
+        <div>Group name: @Model.Name</div>
+
+            <button type="submit">Delete</button>
+
+    </form>
+</div>

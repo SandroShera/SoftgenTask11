@@ -1,0 +1,26 @@
+﻿@using SoftgenTask11.ViewModels;
+@model EditGroupViewModel
+@{
+    ViewData["Title"] = "Edit Group";
+
+}
+
+<form asp-controller="Group" asp-action="EditGroup" method="post">
+    <input hidden asp-for="Id" />
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Number"></label>
+        <input asp-for="Number" />
+@*        <span asp-validation-for="Email" class="text-danger"></span>
+*@    </div>
+    <div>
+
+        <button type="submit">Update</button>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Cancel</a>
+    </div>
+
+</form>

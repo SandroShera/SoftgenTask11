@@ -1,0 +1,42 @@
+﻿@using SoftgenTask11.ViewModels;
+@model GroupDetailsViewModel
+@{
+    ViewData["Title"] = "Group Details";
+}
+
+<h3>Group N: @Model.Number</h3>
+
+<h5>Group Name: @Model.Name</h5>
+
+<h3>Group Lecturers: </h3>
+@if (Model.Lecturers is not null)
+{
+    foreach (var lecturer in Model.Lecturers)
+    {
+        <p>Lecturer</p>
+    }
+}
+else
+{
+    <h5>No lecturers assigned</h5>
+}
+
+<h3>Group Students: </h3>
+@if (Model.Students is not null)
+{
+    foreach (var student in Model.Students)
+    {
+        <p>@student.FirstName</p>
+        <p>@student.LastName</p>
+    }
+}
+else
+{
+    <h5>No Students</h5>
+}
+
+<div>
+    <h4>
+        <a asp-action="GroupIndex" asp-controller="Group">Go back</a>
+    </h4>
+</div>

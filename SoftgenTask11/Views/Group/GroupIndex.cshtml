@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Group>
+@{
+    ViewData["Title"] = "Groups";
+}
+
+<h1>Groups Page</h1>
+
+<div>
+    <h5>
+        <a class="nav-link text-dark" asp-controller="Group" asp-action="AddGroup">Add Group</a>
+    </h5>
+</div>
+<div>
+    <h5>All Groups: </h5>
+
+    <form asp-controller="Group" asp-action="GroupIndex">
+        <p>
+            <input type="text" name="SearchString" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+
+    @foreach (var group in Model)
+    {
+        <div>
+            <p>Group Name: @group.Name</p>
+            <p>Group Number: @group.Number</p>
+
+           <form id="delete-@group.Id" asp-controller="Group" asp-action="DeleteGroup" asp-route-id="@group.Id"  method="post">
+
+                <a asp-controller="Group" asp-action="GroupDetails" asp-route-id="@group.Id"
+               class="btn btn-primary m-1">See more...</a>
+
+                <a asp-controller="Group" asp-action="AddStudent" asp-route-id="@group.Id"
+               class="btn btn-primary m-1">Add Student</a>
+
+               <a asp-controller="Group" asp-action="EditGroup" asp-route-id="@group.Id"
+                class="btn btn-primary m-1">Edit</a>
+
+                <a  onclick="vaso(@group.Id)" class="btn btn-danger m-1">Delete</a>
+           </form>
+            <hr></hr>
+        </div>
+    }
+</div>
+<script>
+    function vaso(id){
+        if (window.confirm("Confirm delete?")){
+            $(`#delete-${id}`).submit()
+        }
+
+    }
+</script>
