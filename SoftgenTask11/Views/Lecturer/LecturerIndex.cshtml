@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Lecturer>
+@{
+    ViewData["Title"] = "Lecturers";
+}
+
+<h1>lecturers Page</h1>
+
+<div>
+    <h5>
+        <a class="nav-link text-dark" asp-controller="Lecturer" asp-action="AddLecturer">Add Lecturer</a>
+    </h5>
+</div>
+
+<h5>All lecturers: </h5>
+
+    <form asp-controller="Lecturer" asp-action="LecturerIndex">
+        <p>
+            <input type="text" name="SearchString" />
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+
+@foreach(var lecturer in Model)
+{
+    <div>
+        <p>First Name: @lecturer.FirstName</p>
+        <p>Last Name: @lecturer.LastName</p>
+
+        <form asp-controller="Lecturer" asp-action="Deletelecturer" asp-route-id="@lecturer.Id"  method="post">
+            
+            <a asp-controller="Lecturer" asp-action="LecturerDetails" asp-route-id="@lecturer.Id"
+               class="btn btn-primary m-1">See more...</a>
+
+            <a asp-controller="Lecturer" asp-action="EditLecturer" asp-route-id="@lecturer.Id"
+               class="btn btn-primary m-1">Edit</a>
+
+            <button class="btn btn-danger m-1" type="submit">Delete</button>
+        </form>
+        <hr></hr>
+    </div>
+
+}

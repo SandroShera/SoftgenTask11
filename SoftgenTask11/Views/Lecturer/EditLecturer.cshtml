@@ -1,0 +1,36 @@
+﻿@model EditLecturerViewModel
+@{
+    ViewData["Title"] = "Edit Lecturer";
+}
+
+<form asp-controller="Lecturer" asp-action="EditLecturer" method="post">
+    <input hidden asp-for="Id" />
+    <div>
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" />
+    </div>
+    <div>
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" />
+        @*        <span asp-validation-for="Email" class="text-danger"></span>
+        *@
+    </div>
+    <div>
+        <label asp-for="PersonalNumber"></label>
+        <input asp-for="PersonalNumber" />
+    </div>
+    <div>
+        <label asp-for="Email"></label>
+        <input asp-for="Email" />
+    </div>
+    <div>
+        <label asp-for="DateOfBirth"></label>
+        <input asp-for="DateOfBirth" />
+    </div>
+    <div>
+
+        <button type="submit">Update</button>
+        <a asp-controller="Lecturer" asp-action="LecturerIndex" class="btn btn-primary">Cancel</a>
+    </div>
+
+</form>

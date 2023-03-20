@@ -1,5 +1,4 @@
-﻿@using SoftgenTask11.ViewModels;
-@model GroupDetailsViewModel
+﻿@model GroupDetailsViewModel
 @{
     ViewData["Title"] = "Group Details";
 }
@@ -13,7 +12,17 @@
 {
     foreach (var lecturer in Model.Lecturers)
     {
-        <p>Lecturer</p>
+        <p>@lecturer.FirstName</p>
+        <p>@lecturer.LastName</p>
+
+        <form asp-controller="Group" asp-action="RemoveLecturer" method="post">
+            <input hidden asp-for="GroupId" />
+            <input hidden asp-for="LecturerId" value="@lecturer.Id" />
+            <div class="m-3">
+                <button type="submit">Remove Lecturer</button>
+            </div>
+        </form>
+        <hr/>
     }
 }
 else
@@ -28,6 +37,15 @@ else
     {
         <p>@student.FirstName</p>
         <p>@student.LastName</p>
+
+        <form asp-controller="Group" asp-action="RemoveStudent" method="post">
+            <input hidden asp-for="GroupId" />
+            <input hidden asp-for="StudentId" value="@student.Id"/>
+            <div class="m-3">
+                <button type="submit">Remove Student</button>
+            </div>
+        </form>
+        <hr />
     }
 }
 else

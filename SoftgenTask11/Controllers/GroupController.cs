@@ -37,6 +37,7 @@ namespace SoftgenTask11.Controllers
 
             GroupDetailsViewModel viewModel = new()
             {
+                GroupId= group.Id,
                 Name = group.Name,
                 Number = group.Number,
                 Lecturers= group.Lecturers,
@@ -68,6 +69,31 @@ namespace SoftgenTask11.Controllers
         }
 
         [HttpPost]
+        public IActionResult RemoveStudent(GroupDetailsViewModel data)
+        {
+            var student = _context.Students.Find(data.StudentId);
+            var group = _context.Groups.Find(data.GroupId);
+
+            group.Students.Remove(student);
+            _context.SaveChanges();
+
+            return RedirectToAction("GroupDetails", new { id = group.Id });
+        }
+
+        [HttpPost]
+        public IActionResult RemoveLecturer(GroupDetailsViewModel data)
+        {
+            var lecturer = _context.Lecturers.Find(data.LecturerId);
+            var group = _context.Groups.Find(data.GroupId);
+
+            _context.Database.ExecuteSqlInterpolated($"delete from GroupLecturer where GroupsId={group.Id} and LecturersId={lecturer.Id}");
+
+            _context.SaveChanges();
+
+            return RedirectToAction("GroupDetails", new { id = group.Id });
+        }
+
+        [HttpPost]
         public IActionResult DeleteGroup(int id)
         {
             var group = _context.Groups.Find(id);
@@ -82,7 +108,7 @@ namespace SoftgenTask11.Controllers
         public IActionResult AddStudent(int id) 
         {
             var students = _context.Students;
-            AddStudentToGroup model = new()
+            StudentToGroup model = new()
             {
                 groupId = id,
                 Students = students
@@ -92,7 +118,7 @@ namespace SoftgenTask11.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddStudent(AddStudentToGroup model)
+        public IActionResult AddStudent(StudentToGroup model)
         {
             var group = _context.Groups.Find(model.groupId);
             var student = _context.Students.Find(model.studentId);
@@ -102,6 +128,43 @@ namespace SoftgenTask11.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("GroupDetails", new {id = group.Id});
+        }
+
+        [HttpGet]
+        public IActionResult AddLecturer(int id)
+        {
+            var lecturers = _context.Lecturers.Include(l => l.Groups);
+
+            LecturerToGroup model = new()
+            {
+                GroupId = id,
+            };
+
+            foreach (var lecturer in lecturers)
+            {
+                if(lecturer.Groups.Any(g => g.Id == id))
+                {
+                    continue;
+                }
+                else
+                {
+                    model.Lecturers.Add(lecturer);
+                }
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult AddLecturer(LecturerToGroup data)
+        {
+            var group = _context.Groups.Find(data.GroupId);
+            var lecturer = _context.Lecturers.Find(data.LecturerId);
+            group.Lecturers.Add(lecturer);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Groupdetails", new { id = group.Id });
         }
 
         [HttpGet]

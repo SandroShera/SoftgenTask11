@@ -14,6 +14,5 @@ namespace SoftgenTask11.Data
         public DbSet<Student> Students { get; set; }
         public DbSet<Lecturer> Lecturers { get; set; }
         public DbSet<Group> Groups { get; set; }
-
     }
 }

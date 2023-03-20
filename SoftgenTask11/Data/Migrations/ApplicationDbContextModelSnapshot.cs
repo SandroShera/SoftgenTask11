@@ -22,21 +22,6 @@ namespace SoftgenTask11.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("GroupLecturer", b =>
-                {
-                    b.Property<int>("GroupsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LecturersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("GroupsId", "LecturersId");
-
-                    b.HasIndex("LecturersId");
-
-                    b.ToTable("GroupLecturer");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")

@@ -1,0 +1,23 @@
+﻿@model LecturerToGroup
+
+@{
+    ViewData["Title"] = "Add lecturer to group";
+}
+
+@foreach (var lecturer in Model.Lecturers)
+{
+        <p>@lecturer.FirstName</p>
+        <p>@lecturer.LastName</p>
+        <p>@lecturer.PersonalNumber</p>
+
+        <form asp-controller="Group" asp-action="AddLecturer" method="post">
+            <input hidden asp-for="GroupId" />
+            <input hidden asp-for="LecturerId" value="@lecturer.Id"/>
+            <div class="m-3">
+
+                <button type="submit">Add Lecturer</button>
+            </div>
+
+        </form>
+
+}

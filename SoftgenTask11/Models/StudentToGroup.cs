@@ -1,6 +1,6 @@
 ﻿namespace SoftgenTask11.Models
 {
-    public class AddStudentToGroup
+    public class StudentToGroup
     {
         public int groupId { get; set; }
         public int studentId { get; set; }

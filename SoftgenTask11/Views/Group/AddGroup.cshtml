@@ -1,10 +1,10 @@
 ﻿@using SoftgenTask11.ViewModels;
 @model GroupCreateViewModel
 @{
-    ViewData["Title"] = "Groups";
+    ViewData["Title"] = "Add Group";
 }
 
-<form enctype="multipart/form-data" asp-controller="Group" asp-action="AddGroup" method="post">
+<form asp-controller="Group" asp-action="AddGroup" method="post">
     <div class="row">
         <label asp-for="Name"></label>
         <input asp-for="Name" />
