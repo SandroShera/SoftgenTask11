@@ -1,0 +1,18 @@
+﻿@model StudentDetailsViewModel
+@{
+    ViewData["Title"] = "Student Details";
+}
+
+<h3>Student Info: </h3>
+
+<p>First name: @Model.FirstName</p>
+<p>Last name: @Model.LastName</p>
+<p>Personal N: @Model.PersonalNumber</p>
+<p>Email: @Model.Email</p>
+<p>Date of birth: @Model.DateOfBirth</p>
+
+<div>
+    <h4>
+        <a asp-action="StudentIndex" asp-controller="Student">Go back</a>
+    </h4>
+</div>
